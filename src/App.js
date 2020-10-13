@@ -19,16 +19,24 @@ function App() {
         Menu
         <ul>
           <Link to="/Table">
-            <li>League Table</li>
+            <li>
+              <i class="fas fa-list-ol" /> League Table
+            </li>
           </Link>
           <Link to="/Fixture">
-            <li>Fixture</li>
+            <li>
+              <i class="fas fa-calendar-week" /> Fixture
+            </li>
           </Link>
           <Link to="/TopScorer">
-            <li>Top Scorer</li>
+            <li>
+              <i class="fas fa-futbol" /> Top Scorer
+            </li>
           </Link>
           <Link to="/Rules">
-            <li>Rules</li>
+            <li>
+              <i class="fas fa-book-open" /> Rules
+            </li>
           </Link>
         </ul>
         <Switch>
