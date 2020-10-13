@@ -23,13 +23,10 @@ const TopScorer = () => {
   const RenderPlayer = (props) => {
     return (
       <tr>
-        <td>{props.renderplayer.Number}</td>
+        <td>0</td>
         <td>{props.renderplayer.FirstNameTh}</td>
         <td>{props.renderplayer.LastNameTh}</td>
-        <td>{props.renderplayer.FirstNameEn}</td>
-        <td>{props.renderplayer.LastNameEn}</td>
         <td>{props.renderplayer.Generation}</td>
-        <td>0</td>
       </tr>
     );
   };
@@ -41,22 +38,33 @@ const TopScorer = () => {
   };
 
   return (
-    <div className="container">
-      <div className="table-responsive mat-elevation-z2">
-        <table className="table table-hover table-striped text-center table-fixed table-shadow">
-          <thead className="thead-dark">
-            <tr>
-              <th width="5%">Scores</th>
-              <th width="15%">ชื่อ</th>
-              <th width="15%">นามสกุล</th>
-              <th width="15%">First Name</th>
-              <th width="15%">Last Name</th>
-              <th width="5%">Generation</th>
-              <th width="5%">Number</th>
-            </tr>
-          </thead>
-          <tbody>{playerlist()}</tbody>
-        </table>
+    <div>
+      <div className="content my-2">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-12">
+              <div className="card card-outline card-dark shadow">
+                <div className="card-header table-shadow">
+                  <div className="row">
+                    <div className="table-responsive mat-elevation-z2">
+                      <table className="table table-hover table-striped text-center table-fixed ">
+                        <thead className="thead-dark">
+                          <tr>
+                            <th width="5%">Scores</th>
+                            <th width="15%">ชื่อ</th>
+                            <th width="15%">นามสกุล</th>
+                            <th width="5%">รุ่น</th>
+                          </tr>
+                        </thead>
+                        <tbody>{playerlist()}</tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
