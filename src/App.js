@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 import "./App.css";
 import Fixture from "./pages/Fixture";
 import Rules from "./pages/Rules";
@@ -26,11 +32,16 @@ function App() {
           </Link>
         </ul>
         <Switch>
-          {/* <Route exact path="/" component={Table} /> */}
+          <Route exact path="/">
+            <Redirect to="/Table" />
+          </Route>
           <Route path="/Table" component={Table} />
           <Route path="/Fixture" component={Fixture} />
           <Route path="/TopScorer" component={TopScorer} />
           <Route path="/Rules" component={Rules} />
+          <Route path="/*">
+            <Redirect to="/Table" />
+          </Route>
         </Switch>
       </Router>
     </div>
