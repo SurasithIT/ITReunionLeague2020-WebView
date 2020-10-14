@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { trackPromise } from "react-promise-tracker";
 import axios from "axios";
 const Rules = () => {
-  const [dataRules, setDataRules] = useState([])
+  const [dataRules, setDataRules] = useState([]);
   useEffect(() => {
     const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
     const URL = "https://itreuionapi.herokuapp.com/rule";
@@ -16,28 +16,29 @@ const Rules = () => {
       })
         .then((res) => {
           setDataRules(res.data.Rule);
+          console.log(res.data.Rule);
         })
         .catch((err) => console.log(err))
     );
   }, []);
-  
+
   const RenderRules = (props) => {
-    console.log(props)
-    return(
-      <tr>                                 
-        <td>{props.render.Description}</td>                                 
+    console.log(props);
+    return (
+      <tr>
+        <td>{props.render.Description}</td>
         <td>{props.render.Remark}</td>
       </tr>
-    )
-  }
+    );
+  };
 
   const rulelist = () => {
     return dataRules.map((render) => {
-      return <RenderRules  render={render} key={render.id}  />
-    })
-  }
-  
-  return(
+      return <RenderRules render={render} key={render.id} />;
+    });
+  };
+
+  return (
     <div>
       <div className="content my-2">
         <div className="container-fluid">
@@ -54,9 +55,7 @@ const Rules = () => {
                             <th width="20%">Remark</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          {rulelist()}
-                        </tbody>
+                        <tbody>{rulelist()}</tbody>
                       </table>
                     </div>
                   </div>
@@ -67,7 +66,7 @@ const Rules = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Rules;
