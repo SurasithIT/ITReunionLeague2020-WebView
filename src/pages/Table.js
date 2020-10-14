@@ -28,19 +28,22 @@ const Table = () => {
     return (
       <Fragment>
         <tr data-toggle="collapse" data-target={`#demo${props.render.id}`}>
+          <td>
+            <i className="fas fa-minus-square"></i>
+          </td>
           <td>{props.render.name}</td>
           <td>{props.render.Played}</td>
           <td>{props.render.Points}</td>
           <td>{props.render.GoalDifference}</td>
         </tr>
         <tr id={`demo${props.render.id}`} className="collapse">
-          <td colSpan="4">
+          <td colSpan="5">
             Won : {props.render.Won} Lost : {props.render.Lost} Drawn :{" "}
             {props.render.Drawn}
           </td>
         </tr>
         <tr id={`demo${props.render.id}`} className="collapse">
-          <td colSpan="4">
+          <td colSpan="5">
             {" "}
             GF : {props.render.GoalFor} GA : {props.render.GoalAgainst}
           </td>
@@ -68,10 +71,11 @@ const Table = () => {
                       <table className="table table-hover table-striped text-center table-fixed ">
                         <thead className="thead-dark">
                           <tr>
-                            <th width="20%">Generation</th>
-                            <th width="5%">Played</th>
-                            <th width="10%">Points</th>
-                            <th width="5%">GD</th>
+                            <th></th>
+                            <th>Generation</th>
+                            <th>Played</th>
+                            <th>Points</th>
+                            <th>GD</th>
                           </tr>
                         </thead>
                         <tbody>{RenderTable()}</tbody>
