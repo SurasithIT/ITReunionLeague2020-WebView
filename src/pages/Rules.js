@@ -1,24 +1,43 @@
-import React from "react";
-
-class RuleData {
-  constructor(id, desc, remark) {
-    this.id = id;
-    this.desc = desc;
-    this.remark = "";
-  }
-}
-
-let rules = [];
-for (let i = 1; i <= 9; i++) {
-  rules.push(
-    new RuleData(
-      i,
-      "Velit cillum sit anim eiusmod id eiusmod incididunt sit minim proident consectetur proident excepteur aute. Irure ipsum cupidatat sunt officia excepteur ut sint eiusmod duis. Eu pariatur irure est ullamco duis enim cillum non. Eiusmod pariatur aliquip qui velit irure"
-    )
-  );
-}
+import React, { useState, useEffect } from "react";
+import { trackPromise } from "react-promise-tracker";
+import axios from "axios";
 const Rules = () => {
-  return (
+  const [dataRules, setDataRules] = useState([])
+  useEffect(() => {
+    const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+    const URL = "https://itreuionapi.herokuapp.com/rule";
+    trackPromise(
+      axios({
+        method: "get",
+        url: PROXY_URL + URL,
+        data: {
+          KEY: "VALUE",
+        },
+      })
+        .then((res) => {
+          setDataRules(res.data.Rule);
+        })
+        .catch((err) => console.log(err))
+    );
+  }, []);
+  
+  const RenderRules = (props) => {
+    console.log(props)
+    return(
+      <tr>                                 
+        <td>{props.render.Description}</td>                                 
+        <td>{props.render.Remark}</td>
+      </tr>
+    )
+  }
+
+  const rulelist = () => {
+    return dataRules.map((render) => {
+      return <RenderRules  render={render} key={render.id}  />
+    })
+  }
+  
+  return(
     <div>
       <div className="content my-2">
         <div className="container-fluid">
@@ -36,14 +55,7 @@ const Rules = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {rules.map((val) => {
-                            return (
-                              <tr key={val.id}>
-                                <td>{val.desc}</td>
-                                <td>{val.remark}</td>
-                              </tr>
-                            );
-                          })}
+                          {rulelist()}
                         </tbody>
                       </table>
                     </div>
@@ -55,7 +67,7 @@ const Rules = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default Rules;

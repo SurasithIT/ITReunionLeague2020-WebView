@@ -7,7 +7,7 @@ const TopScorer = () => {
 
   useEffect(() => {
     const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
-    const URL = "https://itreuionapi.herokuapp.com/player/team/16";
+    const URL = "https://itreuionapi.herokuapp.com/player/";
     trackPromise(
       axios({
         method: "get",
@@ -17,7 +17,8 @@ const TopScorer = () => {
         },
       })
         .then((res) => {
-          setPlayersData(res.data.teams);
+          setPlayersData(res.data.player);
+          console.log(res.data)
         })
         .catch((err) => console.log(err))
     );
