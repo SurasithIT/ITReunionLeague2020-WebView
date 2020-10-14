@@ -50,7 +50,7 @@ const Navbar = () => {
               style={{ height: "2rem" }}
             />{" "}
             <span style={{ verticalAlign: "middle" }}>
-              IT Reunion League 2020-top
+              IT Reunion League 2020
             </span>
           </a>
           <Nav className="ml-auto ">
