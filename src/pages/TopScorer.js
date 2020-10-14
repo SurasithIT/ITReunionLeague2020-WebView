@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { trackPromise } from "react-promise-tracker";
 
 const TopScorer = () => {
   const [playersData, setPlayersData] = useState([]);
@@ -7,17 +8,19 @@ const TopScorer = () => {
   useEffect(() => {
     const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
     const URL = "https://itreuionapi.herokuapp.com/player/team/16";
-    axios({
-      method: "get",
-      url: PROXY_URL + URL,
-      data: {
-        KEY: "VALUE",
-      },
-    })
-      .then((res) => {
-        setPlayersData(res.data.teams);
+    trackPromise(
+      axios({
+        method: "get",
+        url: PROXY_URL + URL,
+        data: {
+          KEY: "VALUE",
+        },
       })
-      .catch((err) => console.log(err));
+        .then((res) => {
+          setPlayersData(res.data.teams);
+        })
+        .catch((err) => console.log(err))
+    );
   }, []);
 
   const RenderPlayer = (props) => {

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import Content from "./components/Content";
+import LoadingSpinner from "./components/LoadingSpinner";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <div className="App">
+      <LoadingSpinner />
       <Router>
         <Navbar />
         <div className="my-3">
