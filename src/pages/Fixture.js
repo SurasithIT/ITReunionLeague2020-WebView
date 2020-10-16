@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import _ from "lodash";
 import { trackPromise } from "react-promise-tracker";
 import axios from "axios";
+import moment from "moment";
 
 // class MatchData {
 //   constructor(id, stadiumNumber, kickOffTime, homeTeam, awayTeam, refereeTeam) {
@@ -200,7 +201,10 @@ const Fixture = () => {
         <td>{props.match.HomeTeam.name}</td>
         <td>
           <ul>
-            <li>{props.match.Kickoff}</li>
+            <li>
+              {props.match.Kickoff &&
+                moment(props.match.Kickoff).format("HH:mm")}
+            </li>
             <li
               className="p-0"
               style={{
