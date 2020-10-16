@@ -6,7 +6,7 @@ import moment from "moment";
 
 const Fixture = () => {
   const [dataMatch, setDataMatch] = useState([]);
-
+  _.sortBy(dataMatch, ["Kickoff", "StadiumId"]);
   const [fixtureFiltered, setFixtureFiltered] = useState(dataMatch);
   const [stadium, setStadium] = useState(0);
 
@@ -24,11 +24,10 @@ const Fixture = () => {
         .then((res) => {
           console.log(res.data.matchs);
           setDataMatch(res.data.matchs);
-          _.sortBy(dataMatch, ["Kickoff", "StadiumId"]);
         })
         .catch((err) => console.log(err))
     );
-  }, [dataMatch]);
+  }, []);
 
   useEffect(() => {
     if (+stadium === 0) {

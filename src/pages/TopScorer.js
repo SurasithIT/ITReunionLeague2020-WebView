@@ -18,13 +18,12 @@ const TopScorer = () => {
         },
       })
         .then((res) => {
-          setPlayersData(res.data.player);
-          _.sortBy(playersData, ["Scores"], ["desc"]);
+          setPlayersData(_.sortBy(res.data.player, ["Scores"], ["desc"]));
           console.log(res.data.player);
         })
         .catch((err) => console.log(err))
     );
-  }, [playersData]);
+  }, []);
 
   const RenderPlayer = (props) => {
     return (
