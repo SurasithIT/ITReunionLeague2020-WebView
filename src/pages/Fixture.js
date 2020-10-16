@@ -203,7 +203,7 @@ const Fixture = () => {
           <ul>
             <li>
               {props.match.Kickoff &&
-                moment(props.match.Kickoff).format("HH:mm")}
+                moment(props.match.Kickoff).utc().format("HH:mm")}
             </li>
             <li
               className="p-0"
