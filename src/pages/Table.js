@@ -22,7 +22,7 @@ const Table = () => {
         },
       })
         .then((res) => {
-          setDataTable(res.data.teams);
+          setDataTable((_.sortBy(res.data.teams, ["Points"])).reverse());
           console.log(res.data.teams);
         })
         .catch((err) => console.log(err))

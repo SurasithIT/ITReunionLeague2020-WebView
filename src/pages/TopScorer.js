@@ -7,18 +7,18 @@ const TopScorer = () => {
   const [playersData, setPlayersData] = useState([]);
 
   useEffect(() => {
-    const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+    // const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
     const URL = "https://itreuionapi.herokuapp.com/player/";
     trackPromise(
       axios({
         method: "get",
-        url: PROXY_URL + URL,
+        url: URL,
         data: {
           KEY: "VALUE",
         },
       })
         .then((res) => {
-          setPlayersData(_.sortBy(res.data.player, ["Scores"], ["desc"]));
+          setPlayersData((_.sortBy(res.data.player, ["Scores"])).reverse());
           console.log(res.data.player);
         })
         .catch((err) => console.log(err))

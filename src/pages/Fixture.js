@@ -11,12 +11,12 @@ const Fixture = () => {
   const [stadium, setStadium] = useState(0);
 
   useEffect(() => {
-    const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+    // const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
     const URL = "https://itreuionapi.herokuapp.com/match";
     trackPromise(
       axios({
         method: "get",
-        url: PROXY_URL + URL,
+        url: URL,
         data: {
           KEY: "VALUE",
         },
