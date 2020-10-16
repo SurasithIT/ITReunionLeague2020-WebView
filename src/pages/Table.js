@@ -38,14 +38,15 @@ const Table = () => {
         </tr>
         <tr id={`demo${props.render.id}`} className="collapse">
           <td colSpan="5">
-            Won : {props.render.Won} Lost : {props.render.Lost} Drawn :{" "}
-            {props.render.Drawn}
+            <strong>Won :</strong> {props.render.Won}
+            <strong> Lost :</strong> {props.render.Lost}
+            <strong> Drawn :</strong> {props.render.Drawn}
           </td>
         </tr>
         <tr id={`demo${props.render.id}`} className="collapse">
           <td colSpan="5">
-            {" "}
-            GF : {props.render.GoalFor} GA : {props.render.GoalAgainst}
+            <strong>GF :</strong> {props.render.GoalFor}
+            <strong> GA :</strong> {props.render.GoalAgainst}
           </td>
         </tr>
       </Fragment>
@@ -64,6 +65,8 @@ const Table = () => {
         <div className="container-fluid">
           <div className="row ">
             <div className="col-12">
+              Click <i className="fas fa-info-circle" /> to see more
+              information.
               <div className="card card-outline card-dark shadow ">
                 <div className="card-header table-shadow ">
                   <div className="row">
