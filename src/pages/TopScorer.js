@@ -18,7 +18,7 @@ const TopScorer = () => {
       })
         .then((res) => {
           setPlayersData(res.data.player);
-          console.log(res.data)
+          console.log(res.data.player);
         })
         .catch((err) => console.log(err))
     );
@@ -27,10 +27,10 @@ const TopScorer = () => {
   const RenderPlayer = (props) => {
     return (
       <tr>
-        <td>0</td>
+        <td>{props.renderplayer.Scores}</td>
         <td>{props.renderplayer.FirstNameTh}</td>
         <td>{props.renderplayer.LastNameTh}</td>
-        <td>{props.renderplayer.Generation}</td>
+        <td>{props.renderplayer.generationId}</td>
       </tr>
     );
   };
