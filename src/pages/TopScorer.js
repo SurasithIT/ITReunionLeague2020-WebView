@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { trackPromise } from "react-promise-tracker";
+import _ from "lodash";
 
 const TopScorer = () => {
   const [playersData, setPlayersData] = useState([]);
@@ -18,11 +19,12 @@ const TopScorer = () => {
       })
         .then((res) => {
           setPlayersData(res.data.player);
+          _.sortBy(playersData, ["Scores"], ["desc"]);
           console.log(res.data.player);
         })
         .catch((err) => console.log(err))
     );
-  }, []);
+  }, [playersData]);
 
   const RenderPlayer = (props) => {
     return (

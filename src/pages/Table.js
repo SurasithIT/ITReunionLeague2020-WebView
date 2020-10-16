@@ -5,6 +5,7 @@ import axios from "axios";
 
 const Table = () => {
   const [dataTable, setDataTable] = useState([]);
+
   useEffect(() => {
     const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
     const URL = "https://itreuionapi.herokuapp.com/team/all";
@@ -18,11 +19,16 @@ const Table = () => {
       })
         .then((res) => {
           setDataTable(res.data.teams);
+          _.sortBy(
+            dataTable,
+            ["Points", "GoalDifference", "Played", "name"],
+            ["desc", "desc", "desc", "asc"]
+          );
           console.log(res.data.teams);
         })
         .catch((err) => console.log(err))
     );
-  }, []);
+  }, [dataTable]);
 
   const TableData = (props) => {
     return (
