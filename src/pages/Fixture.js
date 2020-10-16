@@ -161,7 +161,11 @@ import axios from "axios";
 // };
 
 const Fixture = () => {
-  const [Datamatch , setDatamatch] = useState([]);
+  const [datamatch, setDatamatch] = useState([]);
+  _.sortBy(datamatch, ["Kickoff", "StadiumId"]);
+  const [fixtureFiltered, setFixtureFiltered] = useState(datamatch);
+  const [stadium, setStadium] = useState(0);
+
   useEffect(() => {
     const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
     const URL = "https://itreuionapi.herokuapp.com/match";
@@ -174,46 +178,55 @@ const Fixture = () => {
         },
       })
         .then((res) => {
-          console.log(res.data.matchs)
+          console.log(res.data.matchs);
           setDatamatch(res.data.matchs);
         })
         .catch((err) => console.log(err))
     );
   }, []);
-  
+
+  useEffect(() => {
+    if (+stadium === 0) {
+      setFixtureFiltered(datamatch);
+    } else {
+      let filtered = datamatch.filter((match) => match.StadiumId === +stadium);
+      setFixtureFiltered(filtered);
+    }
+  }, [datamatch, stadium]);
+
   const Match = (props) => {
-    return(
+    return (
       <tr>
-      <td>{props.match.HomeTeamId}</td>
-      <td>
-        <ul>
+        <td>{props.match.HomeTeam.name}</td>
+        <td>
+          <ul>
             <li>{props.match.Kickoff}</li>
             <li
               className="p-0"
               style={{
                 color: "#000080",
               }}
-              >
+            >
               StdNo. {props.match.StadiumId}
             </li>
             <li style={{ fontSize: "1.2rem" }}>
-            {props.match.HomeScores} - {props.match.AwayScores}
+              {props.match.HomeScores} - {props.match.AwayScores}
             </li>
-        </ul>
-      </td>
-          <td>{props.match.AwayTeamId}</td>
-          <td>{props.match.RefereeTeamId}</td>
+          </ul>
+        </td>
+        <td>{props.match.AwayTeam.name}</td>
+        <td>{props.match.RefereeTeam.name}</td>
       </tr>
-    )
-  }
+    );
+  };
 
   const Rendermatch = () => {
-    return Datamatch.map((match) => {
-      return <Match match={match} key={match.id}/>
-    })
-  }
+    return fixtureFiltered.map((match) => {
+      return <Match match={match} key={match.id} />;
+    });
+  };
 
-  return(
+  return (
     <div>
       <div className="content my-2">
         <div className="container-fluid">
@@ -235,9 +248,9 @@ const Fixture = () => {
                             autoComplete="off"
                             defaultChecked
                             value={0}
-                            // onClick={(event) => {
-                            //   setStadium(event.target.value);
-                            // }}
+                            onClick={(event) => {
+                              setStadium(event.target.value);
+                            }}
                           />
                           All Stadium
                         </label>
@@ -248,9 +261,9 @@ const Fixture = () => {
                             id="stadium1"
                             autoComplete="off"
                             value={1}
-                            // onClick={(event) => {
-                            //   setStadium(event.target.value);
-                            // }}
+                            onClick={(event) => {
+                              setStadium(event.target.value);
+                            }}
                           />
                           Stadium 1
                         </label>
@@ -261,9 +274,9 @@ const Fixture = () => {
                             id="stadium2"
                             autoComplete="off"
                             value={2}
-                            // onClick={(event) => {
-                            //   setStadium(event.target.value);
-                            // }}
+                            onClick={(event) => {
+                              setStadium(event.target.value);
+                            }}
                           />
                           Stadium 2
                         </label>
@@ -319,9 +332,7 @@ const Fixture = () => {
         </div>
       </div>
     </div>
-
-
-  )
-}
+  );
+};
 
 export default Fixture;
